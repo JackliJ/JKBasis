@@ -11,7 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.jk.basis.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : JKBaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
