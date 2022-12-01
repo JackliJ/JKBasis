@@ -1,12 +1,13 @@
-package com.jk.comm
+package com.jk.comm.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.jk.comm.model.BaseModel
+import com.jk.comm.util.RxBindingUtils
 import com.jk.comm.viewmodel.BaseViewModel
 
 open abstract class JKBaseActivity<V : ViewDataBinding, VM : BaseViewModel<BaseModel>> : AppCompatActivity() {
@@ -20,6 +21,7 @@ open abstract class JKBaseActivity<V : ViewDataBinding, VM : BaseViewModel<BaseM
         injectLayout()
         initView()
         initData()
+        initClick()
     }
 
     private fun injectLayout() {
@@ -58,5 +60,15 @@ open abstract class JKBaseActivity<V : ViewDataBinding, VM : BaseViewModel<BaseM
      */
     private fun initBaseViewObservable() {
 
+    }
+
+    open fun initClick() {}
+
+    open fun initClick(onClickListener: View.OnClickListener?, vararg views: View?) {
+        if (views != null && views.isNotEmpty()) {
+            for (view in views) {
+                RxBindingUtils.preventRepeatedClick(view, onClickListener)
+            }
+        }
     }
 }
