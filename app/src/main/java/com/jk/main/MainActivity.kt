@@ -6,10 +6,12 @@ import com.jk.basis.R
 import com.jk.basis.databinding.ActivityMainBinding
 import com.jk.comm.base.JKBaseActivity
 import com.jk.comm.immersion.StatusBarCompat
+import com.jk.comm.util.JKUtil
 import com.jk.main.factory.MainFactory
 import com.jk.main.viewmodel.MainViewModel
 
 class MainActivity : JKBaseActivity<ActivityMainBinding, MainViewModel>() {
+
 
     override fun onBindLayout(): Int {
         return R.layout.activity_main
@@ -27,7 +29,16 @@ class MainActivity : JKBaseActivity<ActivityMainBinding, MainViewModel>() {
         return MainViewModel::class.java
     }
 
+    /**
+     * 观察者回调
+     */
     override fun initViewObservable() {
+    }
+
+    override fun firstLayout() {
+        super.firstLayout()
+        //设置灰度的方法应在setContentView之前
+        //JKUtil.Instance.setViewGray(window.decorView)
     }
 
     override fun initView() {
@@ -46,8 +57,9 @@ class MainActivity : JKBaseActivity<ActivityMainBinding, MainViewModel>() {
         initClick({
             when (it) {
                 mBinding.mainTvOne -> updateStatusBarCompat()
+                mBinding.mainTvTwo -> startFragment()
             }
-        }, mBinding.mainTvOne)
+        }, mBinding.mainTvOne,mBinding.mainTvTwo)
     }
 
     private var isStatusBarToWhite = false
@@ -72,7 +84,15 @@ class MainActivity : JKBaseActivity<ActivityMainBinding, MainViewModel>() {
             StatusBarCompat.setStatusBarHeight(this, mBinding.mainActionBarView)
             true
         }
+    }
 
+    /**
+     * fragment示例
+     */
+    private fun startFragment() {
+        val fm = supportFragmentManager
+        val mainFragment = MainFragment()
+        fm.beginTransaction().add(R.id.fragment_layout,mainFragment).commit()
     }
 
 

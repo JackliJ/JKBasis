@@ -18,6 +18,7 @@ open abstract class JKBaseActivity<V : ViewDataBinding, VM : BaseViewModel<BaseM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firstLayout()
         injectLayout()
         initView()
         initData()
@@ -54,6 +55,13 @@ open abstract class JKBaseActivity<V : ViewDataBinding, VM : BaseViewModel<BaseM
 
     abstract fun initView()
     abstract fun initData()
+
+    /**
+     * 该方法置于setContentView 之前
+     */
+    open fun firstLayout(){
+
+    }
 
     /**
      * 一些在viewModel中的执行事件

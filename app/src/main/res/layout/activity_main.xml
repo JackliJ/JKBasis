@@ -26,20 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
-                <ImageView
+                <FrameLayout
+                    android:id="@+id/fragment_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/purple_200"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Basis"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"/>
+                    android:background="@color/teal_200"/>
 
             </RelativeLayout>
 
@@ -62,7 +53,7 @@
                 android:id="@+id/main_tv_two"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="设置页面灰度（悼念）"
+                android:text="Fragment的示例"
                 android:textColor="@color/black"
                 android:gravity="center|left"
                 android:paddingStart="20dp"/>

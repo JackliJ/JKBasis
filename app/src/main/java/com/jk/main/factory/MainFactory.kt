@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import androidx.lifecycle.ViewModel
 import com.jk.main.viewmodel.MainViewModel
 import android.annotation.SuppressLint
+import com.jk.main.viewmodel.MainFragmentViewModel
 import kotlin.jvm.Volatile
 import java.lang.IllegalArgumentException
 
@@ -26,7 +27,10 @@ class MainFactory : NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel() as T
+        } else if (modelClass.isAssignableFrom(MainFragmentViewModel::class.java)) {
+            return MainFragmentViewModel() as T
         }
+
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 }
